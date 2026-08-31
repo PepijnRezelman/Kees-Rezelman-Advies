@@ -35,7 +35,7 @@ export default function Hero({ onExploreSectors, onExploreExpertise, onOpenConta
 
           {/* Lead Paragraph */}
           <p className="text-primary-fixed-dim text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-normal">
-            Kees Rezelman Advies biedt strategisch advies en deskundig projectmanagement voor grootschalige, complexe bouwprojecten. Wij vertalen bestuurlijke visie naar tastbare, duurzame realiteit.
+            Kees Rezelman Advies biedt strategisch advies en deskundig projectmanagement voor grootschalige, complexe bouwprojecten. Ik vertaal bestuurlijke visie naar tastbare, duurzame realiteit.
           </p>
 
           {/* CTA Group */}
@@ -61,7 +61,7 @@ export default function Hero({ onExploreSectors, onExploreExpertise, onOpenConta
           <div className="mt-16 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-3 gap-6 text-white/90">
             <div>
               <span className="text-2xl md:text-3xl font-extrabold text-white block tracking-tight">20+ Jaar</span>
-              <span className="text-xs text-primary-fixed-dim uppercase tracking-wider font-medium">Ervaring in de sector</span>
+              <span className="text-xs text-primary-fixed-dim uppercase tracking-wider font-medium">Ervaring in verschillende sectoren</span>
             </div>
             <div>
               <span className="text-2xl md:text-3xl font-extrabold text-white block tracking-tight">BREEAM</span>
