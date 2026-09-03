@@ -320,7 +320,7 @@ export const siteData = {
     name: "Kees Rezelman",
     title: "Senior Strategisch Adviseur & Projectmanager",
     experience: "20+ jaar",
-    portrait: "https://lh3.googleusercontent.com/aida-public/AB6AXuCnkfnl7DfCJE1UavIuVn0iWSDz_XICyPOXtjFJL8jedTWvqJkD_zBM2cwvnC9qyfuJ8H96yH_JR2rEAMOwQklDkRgRB-ojty1tAEuN5kkqAigjMI509MMQTewnLqGxnhi0pkUC6Y5SR4Dga9OjhJz2OGqTEEc3GgTPCsGGFmZzHdsQGjuvliyjKl49sekbaAiQzPmO4vu3ZKhZyNVLrFGOGXkRCzZtIsU0TbZrfxvvd6-q51ytQt82UyxJ1Hk-B69zEBrdAydnj5M",
+    portrait: "https://content.lingacms.nl/upload/sw_220a4a1d/images/clients-medium/kees-rezelman_1_c36ZDF.jpg",
     bioLead: "Met meer dan 20 jaar ervaring in complexe architecturale trajecten, omgevingsrecht en strategische vastgoedsturing.",
     bioBody: "Mijn aanpak kenmerkt zich door een scherp analytisch vermogen gecombineerd met een pragmatische, resultaatgerichte instelling. Ik geloof in de kracht van structurele integriteit—niet alleen in gebouwen, maar juist in projectprocessen, samenwerkingsverbanden en bestuurlijke besluitvorming.",
     servicesList: [
