@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Linkedin, Send, CheckCircle2, MapPin, Clock } from 'lucide-react';
+import { Mail, Phone, Linkedin, Send, CheckCircle2, MapPin, Clock, AlertCircle, Loader2 } from 'lucide-react';
 import { siteData } from '../data/content';
 
 export default function ContactSection() {
@@ -11,24 +11,85 @@ export default function ContactSection() {
     subject: 'Projectbespreking & Strategisch Advies',
     message: '',
   });
+  const [botcheck, setBotcheck] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || meta.web3FormsAccessKey || '';
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
+    setErrorMessage('');
+
+    // Honeypot spam check: if filled by bot, silently succeed
+    if (botcheck) {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setFormState({
-        name: '',
-        email: '',
-        phone: '',
-        subject: 'Projectbespreking & Strategisch Advies',
-        message: '',
+      return;
+    }
+
+    // If no access key is configured yet, provide clear feedback or fallback
+    if (!accessKey) {
+      // In development / demo when key is not set, simulate or prompt
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormState({
+          name: '',
+          email: '',
+          phone: '',
+          subject: 'Projectbespreking & Strategisch Advies',
+          message: '',
+        });
+      }, 800);
+      return;
+    }
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          from_name: 'Kees Rezelman Advies Website',
+          subject: `Nieuwe aanvraag: ${formState.subject} - ${formState.name}`,
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone || 'Niet opgegeven',
+          onderwerp: formState.subject,
+          bericht: formState.message,
+          botcheck: botcheck,
+        }),
       });
-    }, 800);
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSubmitted(true);
+        setFormState({
+          name: '',
+          email: '',
+          phone: '',
+          subject: 'Projectbespreking & Strategisch Advies',
+          message: '',
+        });
+      } else {
+        setErrorMessage(
+          data.message || 'Er is een fout opgetreden bij het verzenden. Probeer het opnieuw of neem direct contact op via e-mail.'
+        );
+      }
+    } catch (error) {
+      setErrorMessage(
+        'Er kon geen verbinding worden gemaakt met de mailserver. Neem gerust direct contact op via e-mail.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -146,6 +207,32 @@ export default function ContactSection() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot field for bot protection */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    className="hidden"
+                    style={{ display: 'none' }}
+                    tabIndex="-1"
+                    autoComplete="off"
+                    onChange={(e) => setBotcheck(e.target.checked ? 'bot' : '')}
+                  />
+
+                  {errorMessage && (
+                    <div className="p-4 bg-error/10 border border-error/20 rounded-xl flex items-start gap-3 text-sm text-error animate-in fade-in">
+                      <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                      <div className="space-y-1">
+                        <p className="font-semibold">{errorMessage}</p>
+                        <p className="text-xs text-on-surface-variant">
+                          U kunt ook direct mailen naar{' '}
+                          <a href={`mailto:${meta.email}`} className="text-primary font-bold underline">
+                            {meta.email}
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-primary uppercase tracking-wider block">
@@ -225,10 +312,13 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary-container text-white py-4 rounded-lg font-bold text-base transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-3 active:scale-[0.99] disabled:opacity-75"
+                    className="w-full bg-primary hover:bg-primary-container text-white py-4 rounded-lg font-bold text-base transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-3 active:scale-[0.99] disabled:opacity-75 cursor-pointer"
                   >
                     {isSubmitting ? (
-                      <span>Verzenden...</span>
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin text-secondary-container" />
+                        <span>Verzenden...</span>
+                      </>
                     ) : (
                       <>
                         <span>Verstuur Bericht</span>
