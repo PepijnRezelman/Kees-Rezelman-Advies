@@ -1,10 +1,7 @@
 services:
   my-website:
-    image: nginx:latest
+    build: .
     container_name: Kees-Rezelman-Advies
     ports:
-      - "8080:80" 
-    volumes:
-      # This maps your GitHub repo directly into the web server's public folder
-      - ./:/usr/share/nginx/html:ro
+      - "8080:80"
     restart: always
