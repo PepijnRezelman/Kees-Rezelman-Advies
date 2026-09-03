@@ -30,7 +30,7 @@ export default function Hero({ onExploreSectors, onExploreExpertise, onOpenConta
 
           {/* Display Headline */}
           <h1 className="text-white text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.08] mb-8">
-            De Toekomst van Gebouwde Omgevingen Beheren
+            Kees Rezelman Advies
           </h1>
 
           {/* Lead Paragraph */}

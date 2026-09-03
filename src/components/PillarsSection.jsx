@@ -15,13 +15,9 @@ export default function PillarsSection({ onSelectPillar }) {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-[2px] bg-secondary" />
-            <span className="text-secondary font-bold text-xs tracking-widest uppercase">
-              Kerncompetenties
-            </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight leading-tight">
-            Vaste grond onder elk complex bouwproject
+            Kerncompetenties
           </h2>
         </div>
 

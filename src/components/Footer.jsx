@@ -99,7 +99,7 @@ export default function Footer({ onNavigate }) {
             <div className="space-y-3 text-sm text-primary-fixed-dim">
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-secondary-fixed flex-shrink-0" />
-                <span>Kantoor Amsterdam, Nederland</span>
+                <span>Soest, Nederland</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-secondary-fixed flex-shrink-0" />
@@ -116,7 +116,7 @@ export default function Footer({ onNavigate }) {
               <div className="flex items-center gap-3">
                 <Linkedin className="w-4 h-4 text-secondary-fixed flex-shrink-0" />
                 <a href={meta.linkedin} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
-                  LinkedIn Netwerk
+                  LinkedIn
                 </a>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function Footer({ onNavigate }) {
         {/* Bottom Strip */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-primary-fixed-dim">
           <p>© {new Date().getFullYear()} Kees Rezelman Advies. Alle rechten voorbehouden.</p>
-          
+
           <div className="flex items-center gap-6">
             <button onClick={scrollToTop} className="hover:text-white transition-colors flex items-center gap-1.5 font-medium">
               <span>Naar boven</span>
