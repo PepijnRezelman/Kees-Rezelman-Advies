@@ -1,0 +1,7 @@
+services:
+  my-website:
+    build: .
+    container_name: Kees-Rezelman-Advies
+    ports:
+      - "8080:80"
+    restart: always
